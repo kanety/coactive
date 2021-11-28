@@ -1,0 +1,2 @@
+class SimpleCoactor < ApplicationCoactor
+end
