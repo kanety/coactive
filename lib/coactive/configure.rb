@@ -14,6 +14,7 @@ module Coactive
 
     class_methods do
       def configure_coactive
+        self.coactive_config = Config.new(coactive_config.data)
         yield coactive_config
       end
     end

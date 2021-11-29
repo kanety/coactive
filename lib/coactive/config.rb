@@ -11,8 +11,13 @@ module Coactive
       lookup_superclass_until: ['ActiveRecord::Base', 'ActiveModel::Base'],
     }
 
-    def initialize
+    attr_accessor :data
+
+    def initialize(attrs = {})
       @data = DEFAULTS.deep_dup
+      attrs.each do |key, value|
+        send("#{key}=", value)
+      end
     end
 
     DEFAULTS.keys.each do |key|
