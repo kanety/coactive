@@ -11,7 +11,7 @@ module Coactive
         engines = [Rails] + Rails::Engine.subclasses.map(&:instance)
         engines.each do |engine|
           Dir["#{engine.root}/{#{Array(paths).join(',')}}/**/*.rb"].each do |file|
-            require file
+            require_dependency file
           end
         end
       end
