@@ -13,19 +13,19 @@ module Coactive
       class_attribute :cache
       self.cache = {}
 
-      def call(klass, coactivation)
-        with_cache(klass, coactivation) do
-          lookup = lookups.detect { |lookup| lookup.callable?(coactivation) }
-          lookup.new(klass, coactivation).call if lookup
+      def call(klass, coactant)
+        with_cache(klass, coactant) do
+          lookup = lookups.detect { |lookup| lookup.callable?(coactant) }
+          lookup.new(klass, coactant).call if lookup
         end
       end
 
       private
 
-      def with_cache(klass, coactivation)
+      def with_cache(klass, coactant)
         if klass.coactive_config.use_cache
           self.cache[klass] ||= {}
-          self.cache[klass][coactivation] ||= yield
+          self.cache[klass][coactant] ||= yield
         else
           yield
         end
