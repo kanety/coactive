@@ -1,6 +1,6 @@
-describe Coactive::Coaction do
+describe Coactive::Coactors::Coaction do
   let :coactor do
-    Simples::ReactCoactor
+    BasicCoactor
   end
 
   after do

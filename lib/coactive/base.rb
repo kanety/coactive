@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'configure'
-require_relative 'coact'
-require_relative 'coaction'
-require_relative 'coactors'
-require_relative 'loader'
+require_relative 'coactor'
 
 module Coactive
   module Base
@@ -12,9 +9,7 @@ module Coactive
 
     included do
       include Configure
-      include Coact
-      include Coaction
-      include Coactors
+      include Coactor
     end
   end
 end

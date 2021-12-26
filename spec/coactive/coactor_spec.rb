@@ -1,5 +1,13 @@
-describe Coactive::Coactors do
-  context 'basic' do
+describe Coactive::Coactor do
+  let :coactor do
+    ApplicationCoactor
+  end
+
+  it 'has coactors method' do
+    expect(coactor.new.coactors).to eq([])
+  end
+
+  context 'by class' do
     let :coactor do
       LookupCoactor
     end

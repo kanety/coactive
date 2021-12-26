@@ -1,0 +1,2 @@
+class BasicCoactor < ApplicationCoactor
+end

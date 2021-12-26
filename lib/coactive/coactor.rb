@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
+require_relative 'loader'
 require_relative 'lookup'
+require_relative 'coactors/coact'
+require_relative 'coactors/coaction'
 
 module Coactive
-  module Coactors
+  module Coactor
     extend ActiveSupport::Concern
+    include Coactors::Coact
+    include Coactors::Coaction
 
     def coactors
       self.class._coactants.map do |coactant|
