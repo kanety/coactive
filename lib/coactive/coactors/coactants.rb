@@ -2,7 +2,7 @@
 
 module Coactive
   module Coactors
-    module Coact
+    module Coactants
       extend ActiveSupport::Concern
 
       included do

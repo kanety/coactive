@@ -1,4 +1,4 @@
-describe Coactive::Coactors::Coaction do
+describe Coactive::Coactors::Coactions do
   let :coactor do
     BasicCoactor
   end
@@ -9,6 +9,6 @@ describe Coactive::Coactors::Coaction do
 
   it 'adds coactions' do
     coactor.coaction(:test_coaction)
-    expect(coactor.coactions).to eq([:test_coaction])
+    expect(coactor.coactions.map(&:name)).to eq([:test_coaction])
   end
 end
