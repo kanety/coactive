@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.2.0
+
+* Add context feature.
+* Add priority to coaction.
+
 ## 0.1.2
 
 * Clear lookup cache when reloaded.
