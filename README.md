@@ -21,6 +21,8 @@ Then execute:
 
 ## Usage
 
+### Coactors
+
 Include `Coactive::Base` to your base class:
 
 ```ruby
@@ -51,7 +53,7 @@ C.new.coactors
 # => [A, B]
 ```
 
-### Named coactors
+#### Named coactors
 
 You can also define coactive classes by using specific name:
 
@@ -88,30 +90,30 @@ class Base
 end
 ```
 
-### Object-based coactors
+#### Object-based coactors
 
 You can also define coactive classes by using object:
 
 ```ruby
-class ModelA
+class ItemA
 end
 
-class ModelB
+class ItemB
 end
 
-class Base::ModelA < Base
+class Base::ItemA < Base
 end
 
-class Base::ModelB < Base
+class Base::ItemB < Base
 end
 
 class Base::C < Base
-  coact ModelA
-  coact ModelB
+  coact ItemA
+  coact ItemB
 end
 
 Base::C.new.coactors
-#=> [Base::ModelA, Base::ModelB]
+#=> [Base::ItemA, Base::ItemB]
 ```
 
 Coactors are looked up from the namespace corresponding with caller classes.
@@ -130,7 +132,7 @@ class Base
 end
 ```
 
-### Dynamic coactors
+#### Dynamic coactors
 
 You can also dynamically lookup coactors by using block or instance method:
 
@@ -184,7 +186,7 @@ D.new('B').coactors
 #=> [B]
 ```
 
-### Nested coactors
+#### Nested coactors
 
 You can define nested coactors. For example:
 
@@ -210,6 +212,110 @@ end
 
 C.new.coactors.map { |klass| [klass] + klass.new.coactors }.flatten
 #=> [A, NestedA, B, NestedB]
+```
+
+### Context
+
+You can define variables used in a coactor as a context by including `Coactive::Initializer`.
+The variables are stored in `context` as follows:
+
+```ruby
+class Base
+  include Coactive::Base
+  include Coactive::Initializer
+end
+
+class A < Base
+  context :input
+end
+
+coactor = A.new(input: 'something')
+coactor.context.input
+#=> something
+```
+
+#### Required context
+
+You can also define required context as follows:
+
+```ruby
+class A < Base
+  context :input, required: true
+end
+
+A.new
+#=> Coactive::MissingContextError (missing required context: input)
+```
+
+#### Default value
+
+You can also define default value as follows:
+
+```ruby
+class A < Base
+  context :input, default: 'something'
+end
+
+coactor = A.new
+coactor.context.input
+#=> something
+```
+
+### Contextualizer
+
+You can copy context variables to a coactor by calling `contextualize`:
+
+```ruby
+class Base
+  include Coactive::Base
+  include Coactive::Initializer
+  include Coactive::Contextualizer
+end
+
+class A < Base
+  context :input
+end
+
+coactor = A.new(input: 'something')
+coactor.contextualize
+coactor.input
+#=> something
+coactor.instance_variable_get(:@input)
+#=> something
+```
+
+#### Output
+
+You can also set context when finished `contextualize` block:
+
+```ruby
+class A < Base
+  context :result, output: true
+
+  def call
+    @result = 'something'
+  end
+end
+
+coactor = A.new
+coactor.contextualize { coactor.call }
+coactor.context.result
+#=> something
+```
+
+#### Output return value
+
+You can also set context from return value of `contextualize` block:
+
+```ruby
+class A < Base
+  context :result, output: :return
+end
+
+coactor = A.new
+coactor.contextualize { 'return value' }
+coactor.context.result
+#=> return value
 ```
 
 ### Configuration

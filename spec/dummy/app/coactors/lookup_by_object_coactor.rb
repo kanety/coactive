@@ -1,4 +1,4 @@
 class LookupByObjectCoactor < ApplicationCoactor
-  coact A, B
-  coact Inherited::A, Inherited::B
+  coact ItemA, ItemB
+  coact Inherited::ItemA, Inherited::ItemB
 end

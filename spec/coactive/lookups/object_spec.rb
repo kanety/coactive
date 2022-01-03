@@ -6,10 +6,10 @@ describe Coactive::Lookups::Object do
 
     it 'lookups coactors' do
       expect(coactor.new.coactors).to eq([
-        LookupByObject::ACoactor,
-        LookupByObject::BCoactor,
-        LookupByObject::Inherited::ACoactor,
-        LookupByObject::BCoactor
+        LookupByObject::ItemACoactor,
+        LookupByObject::ItemBCoactor,
+        LookupByObject::Inherited::ItemACoactor,
+        LookupByObject::ItemBCoactor
       ])
     end
   end

@@ -1,0 +1,2 @@
+class ItemB
+end

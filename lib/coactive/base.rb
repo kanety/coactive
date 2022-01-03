@@ -2,6 +2,8 @@
 
 require_relative 'configure'
 require_relative 'coactor'
+require_relative 'interface'
+require_relative 'errors'
 
 module Coactive
   module Base
