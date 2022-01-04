@@ -26,10 +26,9 @@ module Coactive
     end
 
     def to_s
-      attrs = @_data.map { |k, v| "#{k}=#{v.inspect}" }.join(', ')
+      attrs = @_data.map { |k, v| "#{k}=#{v.to_s.truncate(300)}" }.join(', ')
       "#<#{self.class} #{attrs}>"
     end
-    alias :inspect :to_s
 
     def define_accessors!(keys)
       Array(keys).each do |key|

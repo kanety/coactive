@@ -18,7 +18,7 @@ describe Coactive::Context do
 
   it 'has to_s' do
     context = described_class.new(in: 'in')
-    expect(context.to_s).to include('in="in"')
+    expect(context.to_s).to include('in=in')
   end
 
   it 'defines accessors' do
