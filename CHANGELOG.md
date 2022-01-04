@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.1
+
+* Truncate string for context.
+
 ## 0.2.0
 
 * Add context feature.
