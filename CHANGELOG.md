@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.2
+
+* Allow overwrite context variables.
+
 ## 0.2.1
 
 * Truncate string for context.
