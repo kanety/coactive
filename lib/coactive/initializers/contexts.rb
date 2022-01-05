@@ -14,7 +14,8 @@ module Coactive
 
       class_methods do
         def context(*names, **options)
-          self._contexts = self._contexts + names.map { |name| Variable.new(name, options) }
+          self._contexts = _contexts.reject { |var| names.include?(var.name) }
+          self._contexts += names.map { |name| Variable.new(name, options) }
         end
       end
     end
