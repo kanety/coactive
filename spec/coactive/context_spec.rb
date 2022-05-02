@@ -16,11 +16,6 @@ describe Coactive::Context do
     expect(context[:in]).to eq('changed')
   end
 
-  it 'has to_s' do
-    context = described_class.new(in: 'in')
-    expect(context.to_s).to include('in=in')
-  end
-
   it 'defines accessors' do
     context = described_class.new(in: 'in')
     context.define_accessors!(:in)

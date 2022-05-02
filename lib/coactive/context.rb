@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'contexts/inspect'
+
 module Coactive
   class Context
+    include Contexts::Inspect
+
     attr_reader :_data
 
     def initialize(data = {}, &block)
@@ -23,11 +27,6 @@ module Coactive
 
     def to_h
       @_data
-    end
-
-    def to_s
-      attrs = @_data.map { |k, v| "#{k}=#{v.to_s.truncate(300)}" }.join(', ')
-      "#<#{self.class} #{attrs}>"
     end
 
     def define_accessors!(keys)
