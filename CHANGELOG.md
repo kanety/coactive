@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.0
+
+* Reduce inspection size for context.
+
 ## 0.2.2
 
 * Allow overwrite context variables.
