@@ -1,4 +1,4 @@
-describe Coactive::Coactors::Coactants do
+describe Coactive::Coactants do
   let :coactor do
     BasicCoactor
   end

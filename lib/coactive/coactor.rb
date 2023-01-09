@@ -2,14 +2,14 @@
 
 require_relative 'loader'
 require_relative 'lookup'
-require_relative 'coactors/coactants'
-require_relative 'coactors/coactions'
+require_relative 'coactants'
+require_relative 'coactions'
 
 module Coactive
   module Coactor
     extend ActiveSupport::Concern
-    include Coactors::Coactants
-    include Coactors::Coactions
+    include Coactants
+    include Coactions
 
     def coactors
       self.class._coactants.map do |coactant|
