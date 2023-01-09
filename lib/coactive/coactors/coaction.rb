@@ -2,9 +2,9 @@
 
 module Coactive
   module Coactors
-    class Coaction < Struct.new(:name, :options)
+    class Coaction < Struct.new(:coactor, :name, :options)
       def priority
-        options[:priority]
+        options[:priority] || 1 << 63
       end
     end
   end

@@ -3,12 +3,20 @@ describe Coactive::Coactors::Coactions do
     BasicCoactor
   end
 
+  let :base_class do
+    BasicCoactor.coactive_config.base_class
+  end
+
+  before do
+    coactor.coaction(:test_coaction)
+  end
+
   after do
-    coactor.clear_coactions
+    base_class.coactions_map.delete(:test_coaction)
   end
 
   it 'adds coactions' do
-    coactor.coaction(:test_coaction)
-    expect(coactor.coactions.map(&:name)).to eq([:test_coaction])
+    coactions = base_class.coactions_map[:test_coaction]
+    expect(coactions.map(&:coactor)).to eq([BasicCoactor])
   end
 end

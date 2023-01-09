@@ -8,21 +8,16 @@ module Coactive
       extend ActiveSupport::Concern
 
       included do
-        class_attribute :_coactions
-        self._coactions = []
+        class_attribute :coactions_map
+        self.coactions_map = {}
       end
 
       class_methods do
         def coaction(*names, **options)
-          self._coactions = _coactions + names.map { |name| Coaction.new(name, options) }
-        end
-
-        def coactions
-          self._coactions
-        end
-
-        def clear_coactions
-          self._coactions = []
+          names.each do |name|
+            coactions = coactions_map[name].to_a + [Coaction.new(self, name, options)]
+            coactions_map[name] = coactions.sort_by.with_index { |coaction, i| [coaction.priority, i] }
+          end
         end
       end
     end

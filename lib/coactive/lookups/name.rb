@@ -15,10 +15,7 @@ module Coactive
       end
 
       def lookup
-        @klass.coactive_config.base_class.descendants.each_with_object({}).with_index do |(coactor, hash), i|
-          coaction = coactor.coactions.detect { |coaction| coaction.name == @coactant }
-          hash[[coaction.priority || 1 << 63, i]] = coactor if coaction
-        end.sort.map { |x| x[1] }
+        @klass.coactive_config.base_class.coactions_map[@coactant].to_a.map(&:coactor)
       end
 
       class << self
