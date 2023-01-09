@@ -6,6 +6,7 @@ module Coactive
       def initialize(klass, coactant)
         @klass = klass
         @coactant = coactant
+        @config = @klass.coactive_config
       end
 
       def call

@@ -11,11 +11,11 @@ module Coactive
       private
 
       def load_files
-        Coactive::Loader.call(@klass.coactive_config.load_paths)
+        Coactive::Loader.call(@config.load_paths)
       end
 
       def lookup
-        @klass.coactive_config.base_class.coactions_map[@coactant].to_a.map(&:coactor)
+        @config.base_class.coactions_map[@coactant].to_a.map(&:coactor)
       end
 
       class << self
