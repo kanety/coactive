@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.0
+
+* Improve lookup performance for named coactors.
+
 ## 0.3.0
 
 * Reduce inspection size for context.
