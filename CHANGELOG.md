@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.1
+
+* Clear registry of coactions when reloaded.
+
 ## 0.4.0
 
 * Improve lookup performance for named coactors.
