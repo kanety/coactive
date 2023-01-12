@@ -4,7 +4,7 @@ describe Coactive::Coactions do
   end
 
   let :base_class do
-    BasicCoactor.coactive_config.base_class
+    coactor.coactive_config.base_class
   end
 
   before do
@@ -12,11 +12,11 @@ describe Coactive::Coactions do
   end
 
   after do
-    base_class.coactions_map.delete(:test_coaction)
+    Coactive::Coactions.registry[base_class].delete(:test_coaction)
   end
 
   it 'adds coactions' do
-    coactions = base_class.coactions_map[:test_coaction]
-    expect(coactions.map(&:coactor)).to eq([BasicCoactor])
+    coactions = Coactive::Coactions[base_class, :test_coaction]
+    expect(coactions.map(&:coactor)).to eq([coactor])
   end
 end
