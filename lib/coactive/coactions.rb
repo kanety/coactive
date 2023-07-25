@@ -24,7 +24,9 @@ module Coactive
       def coaction(*names, **options)
         base = coactive_config.base_class
         names.each do |name|
-          coactions = Coactions[base, name].to_a + [Coaction.new(self, name, options)]
+          coaction = Coaction.new(self, name, options)
+          coaction.priority ||= coactive_config.default_priority
+          coactions = (Coactions[base, name].to_a + [coaction])
           Coactions[base, name] = coactions.sort_by.with_index { |coaction, i| [coaction.priority, i] }
         end
       end

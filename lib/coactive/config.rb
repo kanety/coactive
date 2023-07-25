@@ -9,6 +9,7 @@ module Coactive
       use_cache: true,
       lookup_superclass_for_object: true,
       lookup_superclass_until: ['ActiveRecord::Base', 'ActiveModel::Base'],
+      default_priority: 1 << 63
     }
 
     attr_accessor :data
