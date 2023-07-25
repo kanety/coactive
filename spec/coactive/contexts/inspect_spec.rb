@@ -25,6 +25,24 @@ describe Coactive::Context do
     expect(context.to_s).to include("a=#<ItemA:#{a.object_id}>")
   end
 
+  it 'inspects object with id' do
+    a = ItemA.new
+    def a.id
+      100
+    end
+    context = described_class.new(a: a)
+    expect(context.to_s).to include("a=#<ItemA/#{a.id}>")
+  end
+
+  it 'inspects object with attributes' do
+    a = ItemA.new
+    def a.attributes
+      {a: "a"}
+    end
+    context = described_class.new(a: a)
+    expect(context.to_s).to include('a=#<ItemA {a: "a"}>')
+  end
+
   it 'truncates long string' do
     context = described_class.new(a: 'a'*1000)
     expect(context.to_s).to include(%Q|a="#{'a'*100}...|)

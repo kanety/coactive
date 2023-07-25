@@ -45,7 +45,13 @@ module Coactive
         end
 
         def inspect_object(data)
-          "#<#{data.class}:#{data.object_id}>"
+          if data.respond_to?(:id)
+            "#<#{data.class}/#{data.id}>"
+          elsif data.respond_to?(:attributes) && (attributes = data.attributes).is_a?(Hash)
+            "#<#{data.class} #{inspect_hash(attributes)}>"
+          else
+            "#<#{data.class}:#{data.object_id}>"
+          end
         end
       end
     end
