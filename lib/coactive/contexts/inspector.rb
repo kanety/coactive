@@ -7,7 +7,7 @@ module Coactive
         class_attribute :max_num, :max_length, :basic_classes
         self.max_num = 3
         self.max_length = 100
-        self.basic_classes = [Module, Symbol, String, Numeric, TrueClass, FalseClass, Regexp]
+        self.basic_classes = [Module, Symbol, String, Numeric, TrueClass, FalseClass, NilClass, Regexp]
 
         def call(data)
           if data.is_a?(Array)

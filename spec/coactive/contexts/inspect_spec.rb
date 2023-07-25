@@ -13,4 +13,9 @@ describe Coactive::Context do
     context = described_class.new(a: { a: "a", b: "b", c: "c", d: "d", e: "e", f: "f" })
     expect(context.to_s).to include('{a: "a", b: "b", c: "c"...}')
   end
+
+  it 'inspects nil' do
+    context = described_class.new(a: nil)
+    expect(context.to_s).to include('a=nil')
+  end
 end
