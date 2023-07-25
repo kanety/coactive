@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.5.0
+
+* Simplify inspect of context.
+* Add default priority config.
+
 ## 0.4.1
 
 * Clear registry of coactions when reloaded.
