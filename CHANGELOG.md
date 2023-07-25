@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.5.1
+
+* Fix max length of inspected string.
+* Fix inspect of nil.
+* Fix inspect of objects with id or attributes.
+
 ## 0.5.0
 
 * Simplify inspect of context.
