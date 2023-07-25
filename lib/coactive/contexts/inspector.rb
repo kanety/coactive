@@ -36,7 +36,12 @@ module Coactive
         end
 
         def inspect_basic(data)
-          data.inspect
+          inspected = data.inspect
+          if inspected.length > max_length
+            inspected[0..max_length] + '...'
+          else
+            inspected
+          end
         end
 
         def inspect_object(data)

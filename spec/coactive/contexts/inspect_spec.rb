@@ -18,4 +18,15 @@ describe Coactive::Context do
     context = described_class.new(a: nil)
     expect(context.to_s).to include('a=nil')
   end
+
+  it 'inspects object' do
+    a = ItemA.new
+    context = described_class.new(a: a)
+    expect(context.to_s).to include("a=#<ItemA:#{a.object_id}>")
+  end
+
+  it 'truncates long string' do
+    context = described_class.new(a: 'a'*1000)
+    expect(context.to_s).to include(%Q|a="#{'a'*100}...|)
+  end
 end
