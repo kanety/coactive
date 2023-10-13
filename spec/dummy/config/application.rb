@@ -8,5 +8,6 @@ require "coactive"
 
 module Dummy
   class Application < Rails::Application
+    config.load_defaults Rails::VERSION::STRING.to_f if config.respond_to?(:load_defaults)
   end
 end
