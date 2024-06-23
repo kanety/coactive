@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.2
+
+* Add `frozen_string_literal: true`.
+
 ## 0.5.1
 
 * Fix max length of inspected string.
