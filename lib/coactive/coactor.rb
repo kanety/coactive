@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'loader'
+require_relative 'autoloader'
 require_relative 'lookup'
 require_relative 'coactants'
 require_relative 'coactions'

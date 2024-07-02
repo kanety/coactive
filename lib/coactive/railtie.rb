@@ -3,7 +3,7 @@
 module Coactive
   module Railtie
     ActiveSupport::Reloader.to_prepare do
-      Coactive::Loader.loaded.clear
+      Coactive::Autoloader.loaded.clear
       Coactive::Lookup.cache.clear
       Coactive::Coactions.registry.clear
     end

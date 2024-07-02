@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Coactive
-  class Coaction < Struct.new(:coactor, :name, :options)
+  class Coaction < Struct.new(:coactor, :name, :path, :path_index, :options)
     def priority
       options[:priority]
     end

@@ -11,7 +11,7 @@ module Coactive
       private
 
       def load_files
-        Loader.call(@config.load_paths)
+        Autoloader.load(@config.load_paths)
       end
 
       def lookup
