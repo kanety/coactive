@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.0
+
+* Fix order of autoloading in development mode.
+
 ## 0.5.2
 
 * Add `frozen_string_literal: true`.
