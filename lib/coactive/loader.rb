@@ -21,15 +21,25 @@ module Coactive
       private
 
       def load(path)
-        rails_engines.each do |engine|
-          Dir["#{engine.root}/#{path}/**/*.rb"].each do |file|
-            require_dependency file
+        autoload_paths.each do |autoload_path|
+          if autoload_path.end_with?("/#{path}")
+            if Rails.respond_to?(:autoloaders)
+              Rails.autoloaders.main.eager_load_dir(autoload_path)
+            else
+              eager_load_dir(autoload_path)
+            end
           end
         end
       end
 
-      def rails_engines
-        [Rails] + Rails::Engine.subclasses.map(&:instance)
+      def eager_load_dir(autoload_path)
+        Dir["#{autoload_path}/**/*.rb"].each do |file|
+          require_dependency(file)
+        end
+      end
+
+      def autoload_paths
+        ActiveSupport::Dependencies.autoload_paths
       end
     end
   end
